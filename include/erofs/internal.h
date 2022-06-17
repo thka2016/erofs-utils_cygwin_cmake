@@ -36,7 +36,9 @@ typedef unsigned short umode_t;
 
 /* no obvious reason to support explicit PAGE_SIZE != 4096 for now */
 #if PAGE_SIZE != 4096
+#ifndef __CYGWIN__ // Add by affggh
 #warning EROFS may be incompatible on your platform
+#endif // __CYGWIN__
 #endif
 
 #ifndef PAGE_MASK

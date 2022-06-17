@@ -13,6 +13,9 @@
 #endif
 
 #ifndef HAVE_MEMRCHR
+#ifdef __CYGWIN__ // Add by affggh
+#include <string.h>
+#else
 static inline void *memrchr(const void *s, int c, size_t n)
 {
 	const unsigned char *p = (const unsigned char *)s;
@@ -22,4 +25,5 @@ static inline void *memrchr(const void *s, int c, size_t n)
 			return (void*)p;
 	return NULL;
 }
+#endif // __CYGWIN__
 #endif

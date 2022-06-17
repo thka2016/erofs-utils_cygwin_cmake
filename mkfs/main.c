@@ -29,6 +29,11 @@
 #include <uuid.h>
 #endif
 
+#ifdef __CYGWIN__ // Add by affggh
+#define stat64 stat
+#define lstat64 lstat
+#endif // __CYGWIN__
+
 #define EROFS_SUPER_END (EROFS_SUPER_OFFSET + sizeof(struct erofs_super_block))
 
 static struct option long_options[] = {

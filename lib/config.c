@@ -14,6 +14,11 @@
 #include <sys/ioctl.h>
 #endif
 
+#ifdef __CYGWIN__ // Add by affggh
+// Fix error: variable has incomplete type 'struct winsize'
+#include <sys/termios.h>
+#endif // __CYGWIN__
+
 struct erofs_configure cfg;
 struct erofs_sb_info sbi;
 
