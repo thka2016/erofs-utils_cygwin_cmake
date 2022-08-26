@@ -31,10 +31,13 @@ jobs:
       # Build your program with the given configuration
       run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
       
+    - name: Build Time
+      run: echo "BUILD_TIME=$(date +%s | md5sum | awk '{print substr($1,1,10)}')" >> $GITHUB_ENV
+
     - name: Upload
       uses: ncipollo/release-action@v1.8.6
       with:
         artifacts: ${{ github.workspace }}/bin/*.erofs
         name: "erofs-utils"
-        tag: "1.5-${{ github.run_number }}"
+        tag: "1.5-${{ env.BUILD_TIME }}-${{ github.run_id }}"
         token: ${{ secrets.GITHUB_TOKEN }}
