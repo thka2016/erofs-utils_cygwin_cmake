@@ -39,5 +39,5 @@ jobs:
       with:
         artifacts: ${{ github.workspace }}/bin/*.erofs
         name: "erofs-utils"
-        tag: "1.5-${{ env.BUILD_TIME }}-${{ github.run_id }}"
+        tag: "1.5-${{ env.BUILD_TIME }}"
         token: ${{ secrets.GITHUB_TOKEN }}
