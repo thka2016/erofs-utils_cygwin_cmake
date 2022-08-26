@@ -46,6 +46,7 @@ std::vector<std::string> Split(const std::string& s,
   return result;
 }
 
+/*
 std::string Trim(const std::string& s) {
   std::string result;
 
@@ -79,13 +80,14 @@ std::string Trim(const std::string& s) {
   // Start_index is the first non-space, end_index is the last one.
   return s.substr(start_index, end_index - start_index + 1);
 }
+*/
 
 // These cases are probably the norm, so we mark them extern in the header to
 // aid compile time and binary size.
-template std::string Join(const std::vector<std::string>&, char);
-template std::string Join(const std::vector<const char*>&, char);
-template std::string Join(const std::vector<std::string>&, const std::string&);
-template std::string Join(const std::vector<const char*>&, const std::string&);
+//template std::string Join(const std::vector<std::string>&, char);
+//template std::string Join(const std::vector<const char*>&, char);
+//template std::string Join(const std::vector<std::string>&, const std::string&);
+//template std::string Join(const std::vector<const char*>&, const std::string&);
 
 bool StartsWith(std::string_view s, std::string_view prefix) {
   return s.substr(0, prefix.size()) == prefix;

@@ -20,8 +20,9 @@
 #include <fcntl.h>
 #include <stdlib.h>
 #include <sys/socket.h>
-//#include <sys/user.h>
-
+#ifndef __CYGWIN__
+#include <sys/user.h>
+#endif
 #include <memory>
 
 #include <android-base/logging.h>

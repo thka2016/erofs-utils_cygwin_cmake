@@ -44,7 +44,7 @@ static int openattr(pid_t pid, const char *attr, int flags)
 		#ifdef __CYGWIN__
 		tid = GetCurrentThreadId();
 		#else
-		tid = gettid()
+		tid = gettid();
 		#endif
 		rc = asprintf(&path, "/proc/self/task/%d/attr/%s", tid, attr);
 	}
