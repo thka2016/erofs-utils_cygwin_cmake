@@ -4,7 +4,7 @@ set(source_dir ${CMAKE_SOURCE_DIR}/erofs-utils_cygwin)
 file(STRINGS ${source_dir}/VERSION version LIMIT_COUNT 1)
 #message("erofs-utils version: ${version}")
 
-if (LINUX OR ANDROID)
+if (CMAKE_SYSTEM_NAME MATCHES "Linux" OR ANDROID)
     add_definitions(
             -DHAVE_LINUX_TYPES_H
             -DHAVE_SYS_SYSMACROS_H
