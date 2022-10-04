@@ -38,6 +38,6 @@ jobs:
       uses: ncipollo/release-action@v1.8.6
       with:
         artifacts: ${{ github.workspace }}/bin/*.erofs
-        name: "erofs-utils"
+        name: "Linux X64"
         tag: "1.5-${{ env.BUILD_TIME }}"
         token: ${{ secrets.GITHUB_TOKEN }}
