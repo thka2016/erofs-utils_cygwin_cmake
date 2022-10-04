@@ -1,0 +1,38 @@
+name: CMake NDK
+
+on:
+  push:
+    branches: [ "dev" ]
+  pull_request:
+    branches: [ "dev" ]
+
+env:
+  BUILD_TYPE: Release
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: nttld/setup-ndk@v1
+        id: setup-ndk
+        with:
+          ndk-version: r25b
+          add-to-path: false
+      - run:
+          cmake -B ${{github.workspace}}/build -DCMAKE_SYSTEM_NAME=Android -DCMAKE_SYSTEM_VERSION=30 -DCMAKE_ANDROID_ARCH_ABI=arm64-v8a -DCMAKE_ANDROID_NDK=${{env.ANDROID_NDK_HOME}} -DCMAKE_ANDROID_NDK_TOOLCHAIN_VERSION=clang -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} &&cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
+        env:
+          ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
+
+      - name: Build Time
+        run: echo "BUILD_TIME=$(date +%s | md5sum | awk '{print substr($1,1,10)}')" >> $GITHUB_ENV
+
+      - name: Upload
+        uses: ncipollo/release-action@v1.8.6
+        with:
+          artifacts: ${{ github.workspace }}/bin/*
+          name: "Android ndk arm64-v8a"
+          tag: "${{ env.BUILD_TIME }}"
+          token: ${{ secrets.GITHUB_TOKEN }}
