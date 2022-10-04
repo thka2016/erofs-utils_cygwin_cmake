@@ -21,4 +21,3 @@ add_library(base
 target_include_directories(base PRIVATE
         ${source_dir}/include
         ${CMAKE_SOURCE_DIR}/liblog/include)
-target_compile_options(base PRIVATE -fno-exceptions) # base/strings.cpp undefined reference to `__imp___cxa_begin_catch'

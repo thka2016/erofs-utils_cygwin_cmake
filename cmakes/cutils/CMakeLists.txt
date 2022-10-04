@@ -22,4 +22,3 @@ target_include_directories(cutils PRIVATE
 
         ${CMAKE_SOURCE_DIR}/base/include
         ${CMAKE_SOURCE_DIR}/liblog/include)
-target_compile_options(cutils PRIVATE -fno-exceptions) # libcutils/fs_config.cpp undefined reference to `__imp___cxa_begin_catch'
